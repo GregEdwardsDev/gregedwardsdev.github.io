@@ -8,19 +8,59 @@
         <link href="styles.css" rel="stylesheet">
         <meta property="og:title" content="GregCS">
         <meta property="og:description" content="Greg Edwards CS">
-        <title> Greg Edwards CS - Home</title>
+        <title>Greg Edwards Dev</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Function to roll a single n-sided die
+                function rollDie(sides) {
+                    return Math.floor(Math.random() * sides) + 1;
+                }
+
+                // Function to parse and roll the dice
+                function rollDice() {
+                    const inputElement = document.getElementById("roll_input");
+                    const resultElement = document.getElementById("roll_result");
+                    
+                    const inputText = inputElement.value;
+                    
+                    try {
+                        const [numDice, numSides, modifier] = inputText.match(/(\d+)d(\d+)([+\-]\d+)?/).slice(1);
+                        const total = Array.from({ length: parseInt(numDice) }, () => rollDie(parseInt(numSides)))
+                            .reduce((acc, val) => acc + val, 0);
+                        const result = parseInt(total) + (modifier ? parseInt(modifier) : 0);
+                        resultElement.textContent = `Result: ${result}`;
+                    } catch (error) {
+                        resultElement.textContent = "Invalid input";
+                    }
+                }
+
+                // Attach the rollDice function to the button's click event
+                const rollButton = document.getElementById("roll_button");
+                rollButton.addEventListener("click", rollDice);
+            });
+        </script>
     </head>
     <body>
-        <div class="title_banner"><h2>Greg Edwards CS - Home</h2></div>
+        <div class="title_banner"><h2>Greg Edwards Dev</h2></div>
         <nav>
             <button><a href="./index.html">Home</a></button>
-            <button><a href="./projects.html">Projects</a></button>
             <button><a href="./audio.html">Audio</a></button>
             <button><a href="./contact.html">Contact</a></button>
         </nav>
         <br>
-        <p>
-            I'm Greg Edwards, a software engineer based in Bristol and Gloucester with a background in films, games and music.
+        <h3>I'm Greg Edwards, a software engineer based in South Gloucestershire. Check out some of my projects here:</h3>
+        <br>
+        <h3>Drone Chess</h3>
+        <img src="https://play.gxc.gg/game/b1f998e4-f159-46c1-976e-b814e5d00e50/cover/0b197e95-84b5-432b-88c6-f22da062ed5e/webp-640x360?5e90cd06d828581b812ae5a49bb76a41" alt="Drone Chess">
+        <p>Play on gx games: <a href="https://gx.games/games/mmypgt/drone-chess/" target="_blank" rel="noopener noreferrer">gx.games/games/mmypgt/drone-chess/</a>
+            <br>
+            Drone Chess is a turn-based strategy game where the player controls a Drone, an advanced sentient artificial intelligence, tasked with protecting a human who is under attack from alien threats.
+            Drone Chess was created using GameMaker Studio.
         </p>
+        <br>
+        <h3>Dice Roller</h3>
+        <input id="roll_input" type="text" placeholder="2d6+3">
+        <button id="roll_button">Roll</button>
+        <p id="roll_result">Result</p>
     </body>
 </html>
