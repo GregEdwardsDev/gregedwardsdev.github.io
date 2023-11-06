@@ -255,6 +255,11 @@ header > nav ol li {
   display: inline-block;
 }
 
+li {
+    display: inline
+    
+}
+
 header > nav a,
 header > nav a:visited {
   margin: 0 0.5rem 1rem 0.5rem;
