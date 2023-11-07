@@ -255,8 +255,15 @@ header > nav ol li {
   display: inline-block;
 }
 
+ul {
+    list-style-type: none;
+  }
+
 li {
-    display: inline
+  border: 0.1rem solid rgb(255, 255, 255);
+  display: inline-block;
+  margin-right: 2.5rem;
+  width: 6rem;
 }
 
 header > nav a,
